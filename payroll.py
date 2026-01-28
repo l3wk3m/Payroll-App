@@ -6,6 +6,7 @@ and print detailed information per each employee.
 import os
 import csv
 import pprint
+import openpyxl
 
 CURRENT_DIRECTORY = os.path.dirname(__file__)
 INPUT_NAMES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'names.csv')
@@ -15,6 +16,9 @@ INPUT_BENEFITS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'bik.csv
 INPUT_HOURS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'hours.csv')
 
 OUTPUT_FILE_NAME = os.path.join(CURRENT_DIRECTORY, 'Outputs', 'output.csv')
+
+TEMPLATE_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Templates', 'payslip_template.txt')
+OUTPUT_FOLDERNAME = os.path.join(CURRENT_DIRECTORY, 'Outputs', 'Payslips')
 # etc.
 
 # with open(INPUT_PPSN_CSV_FILENAME, encoding='utf-8') as f:
@@ -110,5 +114,22 @@ with open(OUTPUT_FILE_NAME, "w", encoding='utf-8') as my_file:
     writer.writeheader()
     writer.writerows(salary_dict.values())
 
-    # isolating the elements
+    # find and add in the PPSN
 
+# Generate a payslip per employee
+
+template = openpyxl.load_workbook(TEMPLATE_FILENAME)
+sheet = template.active
+
+person_dict = list(salary_dict.values())[0]
+
+for row in sheet.iter_rows():
+    for cell in row:
+        if cell.value and cell.value[0] == '<' and cell.value[-1] == '>':
+            key = cell.value[1:-1]
+            value = person_dict.get(key, '')
+            if value:
+                cell.value = value
+
+output_filename = os.path.join(OUTPUT_FOLDERNAME, f"payslip_{person_dict.get('Name', 'unknown')}.xlsx")
+template.save(output_filename)
