@@ -42,7 +42,7 @@ def calculate_tax(record):
     """
     Calculate the tax for a given record.
     """
-    salary_bonus = record.get('salary', 0) + record.get('bonus', 0)
+    salary_bonus = record.get('salary', 0) + record.get('Bonus', 0) + record.get('Benefit In Kind', 0)
     if salary_bonus <= 44000:
         tax = salary_bonus * 0.2
     else:
@@ -94,5 +94,7 @@ for ppsn, record in salary_dict.items():
 
 
 # Netpay
+for ppsn, record in salary_dict.items():
+    record['netpay'] = round(record.get('salary', 0) + record.get('Bonus', 0) + record.get('Benefit In Kind', 0) - record.get('tax', 0), 2)
 
 pprint.pprint(salary_dict)
