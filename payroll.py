@@ -75,6 +75,22 @@ def read_csv(filename, dict_to_update, field_name, function_to_process=None):
                 person_dict[field_name] = function_to_process(person_dict[field_name])
             dict_to_update[ppsn] = person_dict  
 
+def fill_payslip_template(template_filename, output_filename, person_dict):
+    template = openpyxl.load_workbook(template_filename)
+    sheet = template.active
+
+    # person_dict = list(salary_dict.values())[0]
+
+    for row in sheet.iter_rows():
+        for cell in row:
+            if cell.value and cell.value[0] == '<' and cell.value[-1] == '>':
+                key = cell.value[1:-1]
+                value = person_dict.get(key)
+                if value:
+                    cell.value = value
+
+    template.save(output_filename)
+
 salary_dict = {}
 
 pprint.pprint(salary_dict)
@@ -117,19 +133,6 @@ with open(OUTPUT_FILE_NAME, "w", encoding='utf-8') as my_file:
     # find and add in the PPSN
 
 # Generate a payslip per employee
-
-template = openpyxl.load_workbook(TEMPLATE_FILENAME)
-sheet = template.active
-
-person_dict = list(salary_dict.values())[0]
-
-for row in sheet.iter_rows():
-    for cell in row:
-        if cell.value and cell.value[0] == '<' and cell.value[-1] == '>':
-            key = cell.value[1:-1]
-            value = person_dict.get(key, '')
-            if value:
-                cell.value = value
-
-output_filename = os.path.join(OUTPUT_FOLDERNAME, f"payslip_{person_dict.get('Name', 'unknown')}.xlsx")
-template.save(output_filename)
+for ppsn, record in salary_dict.items():
+    output_filename = os.path.join(OUTPUT_FOLDERNAME, f'{record["Name"]}.xlsx')
+    fill_payslip_template(TEMPLATE_FILENAME, output_filename, record)
