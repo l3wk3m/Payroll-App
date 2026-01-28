@@ -17,7 +17,7 @@ INPUT_HOURS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'hours.csv'
 
 OUTPUT_FILE_NAME = os.path.join(CURRENT_DIRECTORY, 'Outputs', 'output.csv')
 
-TEMPLATE_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Templates', 'payslip_template.txt')
+TEMPLATE_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Templates', 'Payslip_template.xlsx')
 OUTPUT_FOLDERNAME = os.path.join(CURRENT_DIRECTORY, 'Outputs', 'Payslips')
 # etc.
 
