@@ -25,6 +25,17 @@ INPUT_HOURS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'hours.csv'
 #     person_dict['Name'] = name
 #     salary_dict[ppsn] = person_dict
 
+# Make a function to calculate salary
+
+def calculate_salary(record):
+    """
+    Calculate the salary for a given record.
+    """
+    hours = record.get('hours', 0)
+    rate = record.get('rate', 0)
+    salary = hours * rate
+    record['salary'] = salary
+
 # Make a function to calculate tax
 
 def calculate_tax(record):
@@ -36,7 +47,7 @@ def calculate_tax(record):
         tax = salary_bonus * 0.2
     else:
         tax = (44000 * 0.2) + ((salary_bonus - 44000) * 0.4)
-    record['tax'] = tax
+    record['tax'] = round(tax, 2)
 
 # Make this into a function that can scan every csv
 
@@ -56,9 +67,11 @@ def read_csv(filename, dict_to_update, field_name, function_to_process=None):
             person_dict[field_name] = field
             if function_to_process:
                 person_dict[field_name] = function_to_process(person_dict[field_name])
-            dict_to_update[ppsn] = person_dict
+            dict_to_update[ppsn] = person_dict  
 
 salary_dict = {}
+
+pprint.pprint(salary_dict)
 
 read_csv(INPUT_NAMES_CSV_FILENAME, salary_dict, 'Name')
 read_csv(INPUT_HOURS_CSV_FILENAME, salary_dict, 'Hours', float)
@@ -66,13 +79,15 @@ read_csv(INPUT_RATES_CSV_FILENAME, salary_dict, 'Hourly Rate', float)
 read_csv(INPUT_BONUSES_CSV_FILENAME, salary_dict, 'Bonus', float)
 read_csv(INPUT_BENEFITS_CSV_FILENAME, salary_dict, 'Benefit In Kind', float)
 
-# print(salary_dict)
+pprint.pprint(salary_dict)
 
-
+# Calculate Salary
+# for ppsn, record in salary_dict.items():
+#     calculate_salary(record)
 
 # Calculate Tax
 for ppsn, record in salary_dict.items():
-    record['salary'] = record.get('hours', 0) * record.get('rate', 0)
+    record['salary'] = record.get('Hours', 0) * record.get('Hourly Rate', 0)
 
 for ppsn, record in salary_dict.items():
     calculate_tax(record)
