@@ -13,6 +13,8 @@ INPUT_RATES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'rates.csv'
 INPUT_BONUSES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'bonuses.csv')
 INPUT_BENEFITS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'bik.csv')
 INPUT_HOURS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'hours.csv')
+
+OUTPUT_FILE_NAME = os.path.join(CURRENT_DIRECTORY, 'Outputs', 'output.csv')
 # etc.
 
 # with open(INPUT_PPSN_CSV_FILENAME, encoding='utf-8') as f:
@@ -98,3 +100,15 @@ for ppsn, record in salary_dict.items():
     record['netpay'] = round(record.get('salary', 0) + record.get('Bonus', 0) + record.get('Benefit In Kind', 0) - record.get('tax', 0), 2)
 
 pprint.pprint(salary_dict)
+
+# Export to csv and individual payslips
+
+keys = list(salary_dict.values())[0].keys()
+
+with open(OUTPUT_FILE_NAME, "w", encoding='utf-8') as my_file:
+    writer = csv.DictWriter(my_file, keys)
+    writer.writeheader()
+    writer.writerows(salary_dict.values())
+
+    # isolating the elements
+
