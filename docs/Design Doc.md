@@ -1,4 +1,4 @@
-# Software Design Document - Example
+# Software Design Document
 
 **Payroll processing app**
 
