@@ -8,11 +8,11 @@ import csv
 import pprint
 
 CURRENT_DIRECTORY = os.path.dirname(__file__)
-INPUT_PPSN_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Input', 'PPSN.csv')
-INPUT_RATE_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Input', 'rate.csv')
-INPUT_BONUSES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Input', 'bonuses.csv')
-INPUT_BENEFITS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Input', 'benefits.csv')
-INPUT_HOURS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Input', 'hours.csv')
+INPUT_NAMES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'names.csv')
+INPUT_RATES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'rates.csv')
+INPUT_BONUSES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'bonuses.csv')
+INPUT_BENEFITS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'benefits.csv')
+INPUT_HOURS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'hours.csv')
 # etc.
 
 # with open(INPUT_PPSN_CSV_FILENAME, encoding='utf-8') as f:
@@ -47,7 +47,7 @@ def read_csv(filename, dict_to_update, field_name, function_to_process=None):
     with open(filename, encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            # currently optional function to parse csv for alternative structures:
+            # below is optional function to parse csv for alternative structures
             # if isinstance(row[1], float):
             ppsn = row['PPSN']
             field = row[field_name]
