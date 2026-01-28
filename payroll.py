@@ -11,7 +11,7 @@ CURRENT_DIRECTORY = os.path.dirname(__file__)
 INPUT_NAMES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'names.csv')
 INPUT_RATES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'rates.csv')
 INPUT_BONUSES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'bonuses.csv')
-INPUT_BENEFITS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'benefits.csv')
+INPUT_BENEFITS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'bik.csv')
 INPUT_HOURS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'hours.csv')
 # etc.
 
@@ -60,13 +60,13 @@ def read_csv(filename, dict_to_update, field_name, function_to_process=None):
 
 salary_dict = {}
 
-read_csv(INPUT_PPSN_CSV_FILENAME, salary_dict, 'name')
-read_csv(INPUT_HOURS_CSV_FILENAME, salary_dict, 'hours', float)
-read_csv(INPUT_RATE_CSV_FILENAME, salary_dict, 'rate', float)
-read_csv(INPUT_BONUSES_CSV_FILENAME, salary_dict, 'bonuses', float)
-read_csv(INPUT_BENEFITS_CSV_FILENAME, salary_dict, 'benefits', float)
+read_csv(INPUT_NAMES_CSV_FILENAME, salary_dict, 'Name')
+read_csv(INPUT_HOURS_CSV_FILENAME, salary_dict, 'Hours', float)
+read_csv(INPUT_RATES_CSV_FILENAME, salary_dict, 'Hourly Rate', float)
+read_csv(INPUT_BONUSES_CSV_FILENAME, salary_dict, 'Bonus', float)
+read_csv(INPUT_BENEFITS_CSV_FILENAME, salary_dict, 'Benefit In Kind', float)
 
-print(salary_dict)
+# print(salary_dict)
 
 
 
