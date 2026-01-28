@@ -79,7 +79,7 @@ read_csv(INPUT_RATES_CSV_FILENAME, salary_dict, 'Hourly Rate', float)
 read_csv(INPUT_BONUSES_CSV_FILENAME, salary_dict, 'Bonus', float)
 read_csv(INPUT_BENEFITS_CSV_FILENAME, salary_dict, 'Benefit In Kind', float)
 
-pprint.pprint(salary_dict)
+# pprint.pprint(salary_dict)
 
 # Calculate Salary
 # for ppsn, record in salary_dict.items():
