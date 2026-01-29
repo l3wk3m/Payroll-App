@@ -15,7 +15,7 @@ INPUT_BONUSES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'bonuses.
 INPUT_BENEFITS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'bik.csv')
 INPUT_HOURS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'hours.csv')
 
-OUTPUT_FILE_NAME = os.path.join(CURRENT_DIRECTORY, 'Outputs', 'output.csv')
+OUTPUT_FILE_NAME = os.path.join(CURRENT_DIRECTORY, 'Outputs', 'output.xlsx')
 
 TEMPLATE_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Templates', 'Payslip_template.xlsx')
 OUTPUT_FOLDERNAME = os.path.join(CURRENT_DIRECTORY, 'Outputs', 'Payslips')
