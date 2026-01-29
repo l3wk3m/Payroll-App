@@ -47,6 +47,7 @@ Stakeholder interviews have uncovered the following project requirements going f
 - Add bonuses and gift card amount and add to pay after taxes
 - Pivot table with all the calculated data
 - Payslip for every worker
+- The date the payslip was generated should be printed in each payslip
 
 ### Technical Requirements
 

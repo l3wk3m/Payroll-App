@@ -6,8 +6,8 @@ and print detailed information per each employee.
 import os
 import csv
 import pprint
+from datetime import date
 import openpyxl
-from datetime import date, datetime
 
 CURRENT_DIRECTORY = os.path.dirname(__file__)
 INPUT_NAMES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'names.csv')
