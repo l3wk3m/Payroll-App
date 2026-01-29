@@ -7,6 +7,7 @@ import os
 import csv
 import pprint
 import openpyxl
+from datetime import date, datetime
 
 CURRENT_DIRECTORY = os.path.dirname(__file__)
 INPUT_NAMES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'names.csv')
@@ -49,6 +50,7 @@ def calculate_tax(record):
     Calculate the tax for a given record.
     """
     salary_bonus = record.get('salary', 0) + record.get('Bonus', 0) + record.get('Benefit In Kind', 0)
+    record['grosspay'] = salary_bonus
     if salary_bonus <= 44000:
         tax = salary_bonus * 0.2
     else:
@@ -73,7 +75,9 @@ def read_csv(filename, dict_to_update, field_name, function_to_process=None):
             person_dict[field_name] = field
             if function_to_process:
                 person_dict[field_name] = function_to_process(person_dict[field_name])
-            dict_to_update[ppsn] = person_dict  
+            dict_to_update[ppsn] = person_dict
+            dict_to_update[ppsn]['ppsn'] = ppsn
+            dict_to_update[ppsn]['currentdate'] = date.today().strftime("%d/%m/%Y")
 
 def fill_payslip_template(template_filename, output_filename, person_dict):
     template = openpyxl.load_workbook(template_filename)
