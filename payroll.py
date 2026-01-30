@@ -16,7 +16,7 @@ INPUT_BONUSES_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'bonuses.
 INPUT_BENEFITS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'bik.csv')
 INPUT_HOURS_CSV_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Inputs', 'hours.csv')
 
-OUTPUT_FILE_NAME = os.path.join(CURRENT_DIRECTORY, 'Outputs', 'output.xlsx')
+OUTPUT_FILE_NAME = os.path.join(CURRENT_DIRECTORY, 'Outputs', 'output.csv')
 
 TEMPLATE_FILENAME = os.path.join(CURRENT_DIRECTORY, 'Templates', 'Payslip_template.xlsx')
 OUTPUT_FOLDERNAME = os.path.join(CURRENT_DIRECTORY, 'Outputs', 'Payslips')
@@ -134,7 +134,6 @@ with open(OUTPUT_FILE_NAME, "w", encoding='utf-8') as my_file:
     writer.writeheader()
     writer.writerows(salary_dict.values())
 
-    # find and add in the PPSN
 
 # Generate a payslip per employee
 for ppsn, record in salary_dict.items():

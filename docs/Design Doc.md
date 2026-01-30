@@ -58,7 +58,8 @@ given input: {"ppsn": 1234567A, {"name": "John Doe", "hours":12, "rate": 20, "bo
 
 3. Based on the employee's hourly rate, the program calculates the employee's gross pay.
 4. The program calls a function to determine this employee's tax band and their payable tax and saves these values to variables.
-5. The program calculates the employee's net pay by subtracting the payable tax from their gross pay.
+5. The program calculates the employee's net pay by subtracting the payable tax from their gross pay plus bonus and benefit in kind. The netpay is added to the dictionary of values.
+6. The program calls a function that scans through a template Excel file, inserts the relevant data into the relevant cell and saves it as the payslip for each employee in the Outputs folder. A reference CSV is also saved that stores a dictionary with the calculated value for all employees.
 
 ### Input format
 
