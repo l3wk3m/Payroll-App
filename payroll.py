@@ -51,16 +51,14 @@ def read_csv(filename, dict_to_update, field_name, function_to_process=None):
     with open(filename, encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            # below is optional function to parse csv for alternative structures
-            # if isinstance(row[1], float):
             ppsn = row['PPSN']
             field = row[field_name]
             person_dict = dict_to_update.get(row['PPSN'], {})
-            # ^ Tries to get dict associated with this PPSN. Otherwise returns an empty dictionary
             person_dict[field_name] = field
             if function_to_process:
                 person_dict[field_name] = function_to_process(person_dict[field_name])
             dict_to_update[ppsn] = person_dict
+            # Add PPSN and current date to each person's dictionary
             dict_to_update[ppsn]['ppsn'] = ppsn
             dict_to_update[ppsn]['currentdate'] = date.today().strftime("%d/%m/%Y")
 
@@ -70,8 +68,6 @@ def fill_payslip_template(template_filename, output_filename, person_dict):
     """
     template = openpyxl.load_workbook(template_filename)
     sheet = template.active
-
-    # person_dict = list(salary_dict.values())[0]
 
     for row in sheet.iter_rows():
         for cell in row:

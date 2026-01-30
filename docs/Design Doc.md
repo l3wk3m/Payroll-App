@@ -1,6 +1,6 @@
 # Software Design Document
 
-**Payroll processing app**
+**Payroll Processing App**
 
 Luke Maycock
 
@@ -50,36 +50,13 @@ Stakeholder interviews have highlighted the following project requirements going
 #### Sequence
 
 1. Established the paths of the csv files as PERMANENT VARIABLES.
-2. Program reads the data using the 'import csv' library (if individual files this can be sorted into a dict with kv pairs)(otherwise may have to be organised into key-dict dictionaries)
-
-Sample:
-
-given input: {"ppsn": 1234567A, {"name": "John Doe", "hours":12, "rate": 20, "bonuses": 25}}
-
+2. Program reads the data using the 'import csv' library and saves the values to a dictionary.
 3. Based on the employee's hourly rate, the program calculates the employee's gross pay.
 4. The program calls a function to determine this employee's tax band and their payable tax and saves these values to variables.
 5. The program calculates the employee's net pay by subtracting the payable tax from their gross pay plus bonus and benefit in kind. The netpay is added to the dictionary of values.
 6. The program calls a function that scans through a template Excel file, inserts the relevant data into the relevant cell and saves it as the payslip for each employee in the Outputs folder. A reference CSV is also saved that stores a dictionary with the calculated value for all employees.
 
 ### Input format
-
-#### All
-
-```csv
-PPSN, Name, Hours, Rate, Bonus, Benefit In Kind
-1234567A, John Doe, 36, 15, 15, 15
-```
-
-#### Potential Alternate Format
-
-```csv
-PPSN, 1234567A
-Name, John Doe
-Hours, 36
-Rate, 15
-Bonus, 15
-Benefit In Kind, 15
-```
 
 #### Name
 
@@ -121,9 +98,11 @@ PPSN,BenefitInKind
 #### Payroll table
 
 ```csv
-PPSN,Name,Salary,Bonuses,Taxex,BenefitInKind,NetPay
-1234567A,John Doe,100,15,-25,5,95
+Name,PPSN,CurrentDate,Hours,Rates,Bonuses,BenefitInKind,Salary,GrossPay,Taxes,NetPay
+John Doe,1234567A,30/01/2026,35,22,15,5,100,120,-25,95
 ```
+
+Data will also be output to individual Excel workbooks. One will be generated for each employee.
 
 ## Testing Approach
 
