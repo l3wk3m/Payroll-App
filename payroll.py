@@ -1,6 +1,10 @@
 """
 App to process payrol information from multiple CSV files
-and print detailed information per each employee.
+and print detailed information per each employee to an Excel workbook.
+
+Author: Luke Maycock
+
+Date: 30/01/2026
 """
 
 import os
