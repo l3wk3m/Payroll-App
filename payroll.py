@@ -105,13 +105,13 @@ read_csv(INPUT_RATES_CSV_FILENAME, salary_dict, 'Hourly Rate', float)
 read_csv(INPUT_BONUSES_CSV_FILENAME, salary_dict, 'Bonus', float)
 read_csv(INPUT_BENEFITS_CSV_FILENAME, salary_dict, 'Benefit In Kind', float)
 
-# pprint.pprint(salary_dict)
+pprint.pprint(salary_dict)
 
 # Calculate Salary
 # for ppsn, record in salary_dict.items():
 #     calculate_salary(record)
 
-# Calculate Tax
+# Calculate Salary & Tax
 for ppsn, record in salary_dict.items():
     record['salary'] = record.get('Hours', 0) * record.get('Hourly Rate', 0)
 
@@ -119,7 +119,7 @@ for ppsn, record in salary_dict.items():
     calculate_tax(record)
 
 
-# Netpay
+# Calculate Netpay
 for ppsn, record in salary_dict.items():
     record['netpay'] = round(record.get('salary', 0) + record.get('Bonus', 0) + record.get('Benefit In Kind', 0) - record.get('tax', 0), 2)
 

@@ -6,7 +6,6 @@ Luke Maycock
 
 - [Software Design Document](#software-design-document)
   - [Program Overview](#program-overview)
-  - [Stakeholders Interviews](#stakeholders-interviews)
   - [Program Requirements](#program-requirements)
     - [Functional Requirements](#functional-requirements)
     - [Technical Requirements](#technical-requirements)
@@ -26,26 +25,19 @@ The payroll application is a software that assists users in aggregating payroll 
 
 The application will be developed using the Python programming language in conjunction with the procedural design philosophy.
 
-## Stakeholders Interviews
-
-Stakeholder interviews have uncovered the following project requirements going forward:
-
-- If providing the data in separate csvs they will at least provide one linking piece of data. In the case of this application we have agreed that this will be the employee's ppsn
-- If providing employee hours worked we will also need to know their contract type (i.e. whether the employee is paid per hour, per day, per week, per month or per annum)
-- 
-- The program will be able to calculate the employee's tax band based off their contracted salary or by calculating their gross pay.
-
 ## Program Requirements
+
+Stakeholder interviews have highlighted the following project requirements going forward:
 
 ### Functional Requirements
 
-- Read timetable, rate, bonuses, PPSN from CSV
-- Calculate employee's salary
-- Calculate taxes and subtract them from salary
-- Add bonuses to pay
-- Generate one csv with all of the gathered and calculated data
-- Use that csv to generate a payslip for every worker based off an Excel template
-- The date the payslip was generated should be printed in each payslip
+- Read hours worked, rate, bonuses, Benefit In Kind and PPSN from input CSVs.
+- Calculate employee's salary.
+- Add bonuses to pay.
+- Calculate taxes and subtract them from salary.
+- Generate one csv with all of the gathered and calculated data.
+- Use that csv to generate a payslip for every worker based off an Excel template.
+- The date the payslip was generated should be included in each payslip.
 
 ### Technical Requirements
 
@@ -58,18 +50,15 @@ Stakeholder interviews have uncovered the following project requirements going f
 #### Sequence
 
 1. Established the paths of the csv files as PERMANENT VARIABLES.
-2. Program reads the first row of the csv for the number of values in the row
-3. If the second item in the row is a string, this is formatted with a header
-4. If the second value is an int, the csv is formatted with headers on the left
-5. Program reads the data with 'import csv' library (if individual files this can be sorted into a dict with kv pairs)(otherwise may have to be organised into key-dict dictionaries)
+2. Program reads the data using the 'import csv' library (if individual files this can be sorted into a dict with kv pairs)(otherwise may have to be organised into key-dict dictionaries)
 
 Sample:
 
 given input: {"ppsn": 1234567A, {"name": "John Doe", "hours":12, "rate": 20, "bonuses": 25}}
 
-6. Based on the employee's hourly rate, the program calculates the employee's gross pay.
-7. The program calls a function to determine this employee's tax band and their payable tax and saves these values to variables.
-8. The program calculates the employee's net pay by subtracting the payable tax from their gross pay.
+3. Based on the employee's hourly rate, the program calculates the employee's gross pay.
+4. The program calls a function to determine this employee's tax band and their payable tax and saves these values to variables.
+5. The program calculates the employee's net pay by subtracting the payable tax from their gross pay.
 
 ### Input format
 
